@@ -33,8 +33,8 @@ const displayCardDetails=(details)=>{
                         <h1 class="text-3xl mb-3 font-bold">Fix broken image uploads</h1>
                         <div class=" flex items-center gap-8">
                             <button class="btn btn-active text-sm text-white bg-green-500 rounded-full"> Opened</button>
-                            <li class="text-sm text-gray-500">Opened by Fahim Ahmed</li>
-                            <li class="text-sm text-gray-500">>22/02/2026</li>
+                            <li class="text-sm text-gray-500">Opened by ${details.author}</li>
+                            <li class="text-sm text-gray-500">>${details.updatedAt}</li>
                         </div>
                     </div>
                     <div class="highlight-help flex items-center gap-3">
@@ -59,11 +59,22 @@ const displayCardDetails=(details)=>{
                         </div>
                         <div class="right flex-1 px-5 ">
                             <h4 class="text-gray-500 mb-1 ml-2">Priority:</h4>
-                            <button class="btn rounded-full text-sm text-white bg-red-500 px-5 ">HIGH</button>
+                            <button class="btn priority rounded-full text-sm  px-5 ">${details.priority.toUpperCase()}</button>
                         </div>
                     </div>
                 </div>
     `;
+    //priority
+        const priority = detailsContainer.querySelector(".priority");
+        if(details.priority =="low"){
+            priority.classList.add("low");
+        }
+        else if(details.priority =="medium"){
+            priority.classList.add("medium");
+        }
+        else if(details.priority =="high"){
+            priority.classList.add("high");
+        };
     document.getElementById("my_modal_5").showModal();
 }
 //remove active from tab
@@ -88,7 +99,7 @@ const displayClosedcards =()=>{
                 const div = document.createElement("div")
                 div.innerHTML= `
                 <!-- card -->
-                <div class="color-card "> <!-- for top coloring -->
+                <div class="color-card  rounded-md"> <!-- for top coloring -->
                     <div onclick="loadCardDetails(${card.id})" class="card bg-[#FBFBFB] flex justify-start  shadow-md flex-col ">
                         <div class="card-main space-y-5 p-7  ">
                             <div class="uppersection flex justify-between w-[100%]">
@@ -140,10 +151,13 @@ const displayClosedcards =()=>{
         //status
         const status = div.querySelector(".status");
         const statusP = div.querySelector(".status-p");
+        const colorCard = div.querySelector(".color-card");
         if(card.status === "open"){
             status.classList.add("bg-green-200");
-            statusP.classList.add("border_color_g") 
+            statusP.classList.add("border_color_g");   
+            colorCard.classList.add("border-t-4","border-t-green-500")
         }else{
+            colorCard.classList.add("border-t-4","border-t-purple-500");
             status.classList.add("bg-purple-200")
             status.innerHTML =`
             <i class="fa-regular fa-circle-check text-purple-500"></i>` 
@@ -172,7 +186,7 @@ const displayOpenCards =()=>{
                 const div = document.createElement("div")
                 div.innerHTML= `
                 <!-- card -->
-                <div class="color-card "> <!-- for top coloring -->
+                <div class="color-card rounded-md "> <!-- for top coloring -->
                     <div onclick="loadCardDetails(${card.id})" class="card bg-[#FBFBFB] flex justify-start  shadow-md flex-col ">
                         <div class="card-main space-y-5 p-7  ">
                             <div class="uppersection flex justify-between w-[100%]">
@@ -224,10 +238,13 @@ const displayOpenCards =()=>{
         //status
         const status = div.querySelector(".status");
         const statusP = div.querySelector(".status-p");
+        const colorCard = div.querySelector(".color-card");
         if(card.status === "open"){
             status.classList.add("bg-green-200");
-            statusP.classList.add("border_color_g") 
+            statusP.classList.add("border_color_g");   
+            colorCard.classList.add("border-t-4","border-t-green-500")
         }else{
+            colorCard.classList.add("border-t-4","border-t-purple-500");
             status.classList.add("bg-purple-200")
             status.innerHTML =`
             <i class="fa-regular fa-circle-check text-purple-500"></i>` 
@@ -256,8 +273,8 @@ const displayAllCards = (allCards)=>{
         const div = document.createElement("div")
         div.innerHTML= `
         <!-- card -->
-                <div class="color-card "> <!-- for top coloring -->
-                    <div onclick="loadCardDetails(${card.id})" class="card bg-[#FBFBFB] flex justify-start  shadow-md flex-col ">
+                <div id="" class="color-card  rounded-md shadow-md"> <!-- for top coloring -->
+                    <div onclick="loadCardDetails(${card.id})" class="card bg-[#FBFBFB] flex justify-start   flex-col ">
                         <div class="card-main space-y-5 p-7  ">
                             <div class="uppersection flex justify-between w-[100%]">
                                 <div class="status h-8 w-8  rounded-full flex justify-center items-center">
@@ -287,8 +304,8 @@ const displayAllCards = (allCards)=>{
                         </div>
                         <hr class="border border-gray-200">
                         <div class="p-3 text-gray-500 space-y-2">
-                            <p id="author text-[16px]">${card.author}</p>
-                            <p id="createdAt text-1xl">${card.createdAt}</p>
+                            <p id="author" class ="text-[16px]">${card.author}</p>
+                            <p id="createdAt " class= "text-1xl">${card.createdAt}</p>
                         </div>
                     </div>
                 </div>
@@ -309,10 +326,13 @@ const displayAllCards = (allCards)=>{
         //status
         const status = div.querySelector(".status");
         const statusP = div.querySelector(".status-p");
+        const colorCard = div.querySelector(".color-card");
         if(card.status === "open"){
             status.classList.add("bg-green-200");
-            statusP.classList.add("border_color_g") 
+            statusP.classList.add("border_color_g");   
+            colorCard.classList.add("border-t-4","border-t-green-500")
         }else{
+            colorCard.classList.add("border-t-4","border-t-purple-500");
             status.classList.add("bg-purple-200")
             status.innerHTML =`
             <i class="fa-regular fa-circle-check text-purple-500"></i>` 
