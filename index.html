@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- tailwind cdn  -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <!-- daisy ui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F8FAFC] min-h-screen">
+
+    <section class="login-page p-20">
+        <div
+            class="login-content  max-w-md mx-auto flex justify-center flex-col bg-[#ffff] shadow-sm p-10 rounded-sm space-y-6">
+            <div class="logo ">
+                <img src="/assets/github-logo.png" alt="" class="mx-auto mb-4">
+                <h1 class="text-3xl font-bold text-center">GitHub Issues Tracker</h1>
+                <p class="text-lg text-gray-400 text-center">Sign in to manage your issues</p>
+            </div>
+            <div class="input-field">
+                <fieldset class="space-y-3">
+                    <div class="username">
+                        <fieldset class="fieldset">
+                            <legend for="username" class="fieldset-legend text-lg font-semibold">Username</legend>
+                            <input id="userInput" name="username" type="text" class="input w-[100%]"
+                                placeholder="Enter Username" />
+                            <p class="label font-light text-[#4A00FF]">Default: admin</p>
+                        </fieldset>
+                    </div>
+                    <div class="password">
+                        <fieldset class="fieldset">
+                            <legend for="password" class="fieldset-legend text-lg font-semibold">Password</legend>
+                            <input type="Password" id="password" name="password" class="input w-[100%]"
+                                placeholder="Password" />
+                            <p class="label font-light text-[#4A00FF]">Default: admin123</p>
+                        </fieldset>
+                    </div>
+                </fieldset>
+            </div>
+            <button id="btn_sign_in" class="btn btn-primary w-[100%]">Sign In</button>
+            <div class="demo-details mx-auto w-[100%]">
+                <p class="text-center mb-3">Demo Credentials:</p>
+                <div class="py-4 bg-gray-50 rounded-sm ">
+                    <h2 class="text-center"><span class="font-bold text-lg">Username:</span> admin </h2>
+                    <h2 class="text-center"> <span class="font-bold text-lg">Password:</span> admin123 </h2>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <script src="login.js"></script>
+</body>
+
+</html>

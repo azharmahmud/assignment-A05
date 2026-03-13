@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github Issue Tracker</title>
+    <link rel="shortcut icon" href="assets/github-logo.png" type="image/x-icon">
+    <i class="fa-brands fa-github"></i>
+    <!-- tailwind cdn  -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- font awsoem cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <!-- daisy ui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+        }
+
+        .low {
+            background-color: #E6E6E9;
+            color: gray;
+        }
+
+        .medium {
+            background-color: #FFF6D1;
+            color: #F59E0B;
+        }
+
+        .high {
+            background-color: #FEECEC;
+            color: #EF4444;
+        }
+
+        .border_color_g {
+            border: 2px dashed #00A96E;
+        }
+
+        .border_color_r {}
+    </style>
+</head>
+
+<body class="bg-[#F8FAFC] ">
+    <div class="navbar bg-base-100 shadow-sm flex-col md:flex-row gap-5 ">
+        <div class="flex-1 px-15">
+            <img class="h-[36px] w-[37px] inline mt-[-10px]" src="assets/github-logo.png" alt="">
+            <span class="text-lg md:text-3xl font-semibold">GitHub Issues Tracker</span>
+        </div>
+        <div class="flex gap-2 px-15">
+            <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+            <button class="btn btn-primary">+ New Issue</button>
+        </div>
+    </div>
+
+    <main class="w-10/12 mx-auto space-y-1">
+
+        <section class=" bg-white mt-10 py-7 px-5 space-x-1 rounded-sm mb-6">
+            <button onclick="displayAllCards()" id="all-tab"
+                class="btn tab-btn py-6 px-10 text-xl btn-primary text-white">All</button>
+            <button onclick="displayOpenCards()" id="tab-open"
+                class="btn tab-btn py-6 px-10 text-xl text-gray-500">Open</button>
+            <button onclick="displayClosedcards()" id="colsed-tab"
+                class="btn tab-btn py-6 px-10 text-xl text-gray-500">Closed</button>
+
+        </section>
+        <section class="bg-white flex justify-around items-center ">
+            <div class="flex-5">
+                <div class=" flex justify-start gap-2 p-4">
+                    <div class="bg-purple-100 w-12 h-12 flex items-center justify-center rounded-full mt-1">
+                        <img src="assets/Aperture.png" alt="" class="w-8 h-8 ">
+                    </div>
+                    <div class="">
+                        <span class="text-2xl font-bold ">50 Issues</span> <br>
+                        <p class="text-gray-500">Track and manage your project issues</p>
+                    </div>
+                </div>
+            </div>
+            <div class=" bg-white px-4">
+                <div class="flex gap-10 ">
+                    <div class="flex items-center">
+                        <p class="h-4 w-4 p-1 rounded-full bg-green-600 mr-1"></p>
+                        <span>Open</span>
+                    </div>
+                    <div class="flex  items-center pr-4">
+                        <p class="h-4 w-4 p-1 rounded-full bg-purple-500 mr-1"></p>
+                        <span>Close</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white">
+            <!-- all cards -->
+            <div id="all_card_container"
+                class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 bg-[#FBFBFB] gap-4 p-6 shadow-sm">
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <div id="deails-container" class="">
+
+
+            </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn btn-primary">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
