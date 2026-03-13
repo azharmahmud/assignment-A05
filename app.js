@@ -75,6 +75,8 @@ const displayCardDetails=(details)=>{
         else if(details.priority =="high"){
             priority.classList.add("high");
         };
+        // highlight labels
+        showLabels(details, div);
     document.getElementById("my_modal_5").showModal();
 }
 //remove active from tab
@@ -112,20 +114,21 @@ const displayClosedcards =()=>{
                                 </div>
                             </div>
                             <div class="title ">
-                                <h2 class="text-xl font-semibold pb-4">${card.title} / </h2>
+                                <h2 class="text-xl font-semibold pb-4">${card.title}</h2>
                                 <p class="text-md text-gray-500">${card.description}
                                 </p>
                             </div>
                             <div class="highlight-help flex items-center gap-3">
+                                <div class="highlight-help flex items-center gap-3">
                                 <li
-                                    class="list-none text-red-500 bg-red-100 rounded-full px-2 py-1 border border-red-300">
-                                    <i class="fa-solid fa-bug p-1 mr-1"></i>BUG
+                                    class="list-none highlight-help-1  rounded-full px-2 py-1 border ">
+                                   ${card.labels[0].toUpperCase()}
                                 </li>
                                 <li
-                                    class="list-none text-yellow-700 bg-yellow-100 px-2 py-1 rounded-full border border-yellow-300">
-                                    <i class="fa-solid fa-life-ring mr-1"></i>HELP
-                                    WANTED
+                                    class="list-none highlight-help-2 text-yellow-700 bg-yellow-100 px-2 py-1 rounded-full border border-yellow-300">
+                                     ${card.labels[1]}
                                 </li>
+                            </div>
                             </div>
                         </div>
                         <hr class="border border-gray-200">
@@ -162,10 +165,46 @@ const displayClosedcards =()=>{
             status.innerHTML =`
             <i class="fa-regular fa-circle-check text-purple-500"></i>` 
         }
+        //highlight-help
+        const highlightHelp1 = div.querySelector(".highlight-help-1")
+        const highlightHelp2 = div.querySelector(".highlight-help-2")
+        if(card.labels[0] == "enhancement"){
+            highlightHelp1.classList.add('bg-green-200','text-green-600', 'border-green-300')
+        }else if(card.labels[0] == "bug" ){
+            highlightHelp1.innerHTML = `
+            <i class="fa-solid fa-bug p-1 mr-1 "></i> BUG
+            `
+            highlightHelp1.classList.add('bg-red-200','text-red-600', 'border-red-300')
+        }else if(card.labels[0] == "documentation" ){
+            highlightHelp1.innerHTML = `
+             ${card.labels[0].toUpperCase()}
+            `
+            highlightHelp1.classList.add('bg-green-200','text-green-600', 'border-green-300')
+        };
+        if(card.labels[1] == "good first issue"){
+            highlightHelp2.innerHTML = `
+            <i class="fa-solid fa-life-ring mr-1"></i>${card.labels[1]}
+            `
+        }
+        else if(card.labels[1] == "help wanted"){
+            highlightHelp2.innerHTML = `
+            <i class="fa-solid fa-life-ring mr-1"></i>${card.labels[1]}
+            `
+        }
+        else if(card.labels[1] == "enhancement"){
+            highlightHelp2.innerHTML = `
+            <i class="fa-solid fa-life-ring mr-1"></i>${card.labels[1]}
+            `
+        }else if (card.labels.length >1){
+            highlightHelp2.classList.add("hidden");
+
+        }
         // active clicked button
         removeActive()
         const tabClosed = document.getElementById("colsed-tab")
         tabClosed.classList.add("btn-primary", "text-white");
+        // highlight labels
+        showLabels(card, div);
         allCardContainer.append(div);
         }
         });
@@ -199,20 +238,21 @@ const displayOpenCards =()=>{
                                 </div>
                             </div>
                             <div class="title ">
-                                <h2 class="text-xl font-semibold pb-4">${card.title} / </h2>
+                                <h2 class="text-xl font-semibold pb-4">${card.title}</h2>
                                 <p class="text-md text-gray-500">${card.description}
                                 </p>
                             </div>
                             <div class="highlight-help flex items-center gap-3">
+                                <div class="highlight-help flex items-center gap-3">
                                 <li
-                                    class="list-none text-red-500 bg-red-100 rounded-full px-2 py-1 border border-red-300">
-                                    <i class="fa-solid fa-bug p-1 mr-1"></i>BUG
+                                    class="list-none highlight-help-1  rounded-full px-2 py-1 border ">
+                                   ${card.labels[0].toUpperCase()}
                                 </li>
                                 <li
-                                    class="list-none text-yellow-700 bg-yellow-100 px-2 py-1 rounded-full border border-yellow-300">
-                                    <i class="fa-solid fa-life-ring mr-1"></i>HELP
-                                    WANTED
+                                    class="list-none highlight-help-2 text-yellow-700 bg-yellow-100 px-2 py-1 rounded-full border border-yellow-300">
+                                     ${card.labels[1]}
                                 </li>
+                            </div>
                             </div>
                         </div>
                         <hr class="border border-gray-200">
@@ -249,10 +289,47 @@ const displayOpenCards =()=>{
             status.innerHTML =`
             <i class="fa-regular fa-circle-check text-purple-500"></i>` 
         }
+        //highlight-help
+        const highlightHelp1 = div.querySelector(".highlight-help-1")
+        const highlightHelp2 = div.querySelector(".highlight-help-2")
+        if(card.labels[0] == "enhancement"){
+            highlightHelp1.classList.add('bg-green-200','text-green-600', 'border-green-300')
+        }else if(card.labels[0] == "bug" ){
+            highlightHelp1.innerHTML = `
+            <i class="fa-solid fa-bug p-1 mr-1 "></i> BUG
+            `
+            highlightHelp1.classList.add('bg-red-200','text-red-600', 'border-red-300')
+        }else if(card.labels[0] == "documentation" ){
+            highlightHelp1.innerHTML = `
+             ${card.labels[0].toUpperCase()}
+            `
+            highlightHelp1.classList.add('bg-green-200','text-green-600', 'border-green-300')
+        };
+        if(card.labels[1] == "good first issue"){
+            highlightHelp2.innerHTML = `
+            <i class="fa-solid fa-life-ring mr-1"></i>${card.labels[1]}
+            `
+        }
+        else if(card.labels[1] == "help wanted"){
+            highlightHelp2.innerHTML = `
+            <i class="fa-solid fa-life-ring mr-1"></i>${card.labels[1]}
+            `
+        }
+        else if(card.labels[1] == "enhancement"){
+            highlightHelp2.innerHTML = `
+            <i class="fa-solid fa-life-ring mr-1"></i>${card.labels[1]}
+            `
+        }else if (card.labels.length >1){
+            highlightHelp2.classList.add("hidden");
+
+        }
         // active clicked button
         removeActive()
         const tabOpen = document.getElementById("tab-open")
         tabOpen.classList.add("btn-primary", "text-white");
+
+        // highlight labels
+        showLabels(card, div);
         allCardContainer.append(div);
         }
         });
@@ -286,19 +363,18 @@ const displayAllCards = (allCards)=>{
                                 </div>
                             </div>
                             <div class="title ">
-                                <h2 class="text-xl font-semibold pb-4">${card.title} / </h2>
+                                <h2 class="text-xl font-semibold pb-4">${card.title}</h2>
                                 <p class="text-md text-gray-500">${card.description}
                                 </p>
                             </div>
                             <div class="highlight-help flex items-center gap-3">
                                 <li
-                                    class="list-none text-red-500 bg-red-100 rounded-full px-2 py-1 border border-red-300">
-                                    <i class="fa-solid fa-bug p-1 mr-1"></i>BUG
+                                    id="" class="list-none highlight-help-1   rounded-full px-2 py-1 border ">
+                                   ${card.labels[0].toUpperCase()}
                                 </li>
                                 <li
-                                    class="list-none text-yellow-700 bg-yellow-100 px-2 py-1 rounded-full border border-yellow-300">
-                                    <i class="fa-solid fa-life-ring mr-1"></i>HELP
-                                    WANTED
+                                   id="" class="list-none highlight-help-2  px-2 py-1 rounded-full border ">
+                                     ${card.labels[1]}
                                 </li>
                             </div>
                         </div>
@@ -337,8 +413,41 @@ const displayAllCards = (allCards)=>{
             status.innerHTML =`
             <i class="fa-regular fa-circle-check text-purple-500"></i>` 
         }
-
+        // highlight labels
+        showLabels(card, div);
+        
         allCardContainer.append(div);
     });
+}
+function showLabels(card, div){
+    const highlightHelp1 = div.querySelector(".highlight-help-1");
+    const highlightHelp2 = div.querySelector(".highlight-help-2");
+
+    // first label
+    if(card.labels[0] === "enhancement"){
+        highlightHelp1.innerHTML = `${card.labels[0].toUpperCase()}`;
+        highlightHelp1.classList.add('bg-green-200','text-green-600','border-green-300');
+
+    } 
+    else if(card.labels[0] === "bug"){
+        highlightHelp1.innerHTML = `
+        <i class="fa-solid fa-bug p-1 mr-1"></i> BUG
+        `;
+        highlightHelp1.classList.add('bg-red-200','text-red-600','border-red-300');
+    }
+    else if(card.labels[0] === "documentation"){
+        highlightHelp1.innerHTML = `${card.labels[0].toUpperCase()}`;
+        highlightHelp1.classList.add('bg-green-200','text-green-600','border-green-300');
+    }
+
+    // second label
+    if(card.labels.length > 1){
+        highlightHelp2.innerHTML = `
+        <i class="fa-solid fa-life-ring mr-1"></i>${card.labels[1]}
+        `;
+        highlightHelp2.classList.add('bg-yellow-200','text-yellow-600','border-yellow-300', 'tetx-[12px]');
+    }else{
+        highlightHelp2.classList.add("hidden");
+    }
 }
 loadAllCards();
