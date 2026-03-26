@@ -26,7 +26,7 @@ const loadCardDetails = async( id)=>{
 }
 const displayCardDetails=(details)=>{
     console.log(details)
-    const detailsContainer = document.getElementById("deails-container")
+    const detailsContainer = document.getElementById("details-container")
     detailsContainer.innerHTML = `
     <div class="space-y-5">
                     <div>
@@ -49,13 +49,12 @@ const displayCardDetails=(details)=>{
                         </li>
                     </div>
                     <p class="text-md text-gray-500">
-                        The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive
-                        behavior.
+                        ${details.description}
                     </p>
                     <div class="flex w-[100%] bg-gray-100 rounded-sm p-5 ">
                         <div class="left flex-1 px-5">
                             <h4 class="text-gray-500 mb-1">Assignee:</h4>
-                            <h3>Fahim ahmed</h3>
+                            <h3>${details.author}</h3>
                         </div>
                         <div class="right flex-1 px-5 ">
                             <h4 class="text-gray-500 mb-1 ml-2">Priority:</h4>
@@ -76,9 +75,10 @@ const displayCardDetails=(details)=>{
             priority.classList.add("high");
         };
         // highlight labels
-        showLabels(details, div);
+        showLabels(details,detailsContainer);
     document.getElementById("my_modal_5").showModal();
 }
+
 //remove active from tab
 function removeActive(){
     const tabBtn = document.querySelectorAll(".tab-btn")
@@ -415,7 +415,6 @@ const displayAllCards = (allCards)=>{
         }
         // highlight labels
         showLabels(card, div);
-        
         allCardContainer.append(div);
     });
 }
@@ -423,6 +422,7 @@ function showLabels(card, div){
     const highlightHelp1 = div.querySelector(".highlight-help-1");
     const highlightHelp2 = div.querySelector(".highlight-help-2");
 
+    if(!highlightHelp1 || !highlightHelp2) return;
     // first label
     if(card.labels[0] === "enhancement"){
         highlightHelp1.innerHTML = `${card.labels[0].toUpperCase()}`;
